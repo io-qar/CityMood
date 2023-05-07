@@ -1,0 +1,4 @@
+<resources>
+	<string name="app_name">CityMood</string>
+	<string name="title_activity_maps">MapsActivity</string>
+</resources>
