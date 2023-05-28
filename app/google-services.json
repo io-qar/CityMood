@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "762392071401",
+    "firebase_url": "https://citymood-386012-default-rtdb.firebaseio.com",
+    "project_id": "citymood-386012",
+    "storage_bucket": "citymood-386012.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:762392071401:android:f3ef4fca7dd9e79cf9f478",
+        "android_client_info": {
+          "package_name": "com.example.citymood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "762392071401-fg1jkh3jmsajj6ec1am0dn6v7igshqni.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKFjQBhC8iaiUQr3LdCYYX9ITHyDF21hE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "762392071401-fg1jkh3jmsajj6ec1am0dn6v7igshqni.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
