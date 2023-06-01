@@ -10,8 +10,8 @@
 	tools:openDrawer="start">
 
 	<include
-		android:id="@+id/app_bar_shorka"
-		layout="@layout/app_bar_shorka"
+		layout="@layout/app_bar_shtorka"
+		android:id="@+id/bar_shtorka"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent" />
 
@@ -21,6 +21,7 @@
 		android:layout_height="match_parent"
 		android:layout_gravity="start"
 		android:fitsSystemWindows="true"
-		app:headerLayout="@layout/nav_header_shorka"
+		app:headerLayout="@layout/nav_header_shtorka"
 		app:menu="@menu/activity_main_drawer" />
+
 </androidx.drawerlayout.widget.DrawerLayout>

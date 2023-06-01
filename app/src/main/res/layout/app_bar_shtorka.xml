@@ -20,7 +20,7 @@
 			app:popupTheme="@style/Theme.CityMood.PopupOverlay" />
 	</com.google.android.material.appbar.AppBarLayout>
 
-	<include layout="@layout/content_shorka" />
+	<include layout="@layout/content_shtorka" />
 
 	<com.google.android.material.floatingactionbutton.FloatingActionButton
 		android:id="@+id/fab"

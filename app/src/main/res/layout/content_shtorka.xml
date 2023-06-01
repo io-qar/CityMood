@@ -6,10 +6,10 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	app:layout_behavior="@string/appbar_scrolling_view_behavior"
-	tools:showIn="@layout/app_bar_shorka">
+	tools:showIn="@layout/app_bar_shtorka">
 
 	<fragment
-		android:id="@+id/nav_host_fragment_content_shorka"
+		android:id="@+id/nav_host_fragment_content_shtorka"
 		android:name="androidx.navigation.fragment.NavHostFragment"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
@@ -18,4 +18,5 @@
 		app:layout_constraintRight_toRightOf="parent"
 		app:layout_constraintTop_toTopOf="parent"
 		app:navGraph="@navigation/mobile_navigation" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

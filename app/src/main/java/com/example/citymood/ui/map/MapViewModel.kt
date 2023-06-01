@@ -1,12 +1,12 @@
-package com.example.citymood.ui.logout
+package com.example.citymood.ui.map
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class LogoutViewModel: ViewModel() {
+class MapViewModel : ViewModel() {
 	private val _text = MutableLiveData<String>().apply {
-		value = "This is logout Fragment"
+		value = "This is settings Fragment"
 	}
 	val text: LiveData<String> = _text
 }
