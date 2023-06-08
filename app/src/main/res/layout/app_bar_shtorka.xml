@@ -19,9 +19,7 @@
 			android:background="?attr/colorPrimary"
 			app:popupTheme="@style/Theme.CityMood.PopupOverlay" />
 	</com.google.android.material.appbar.AppBarLayout>
-
 	<include layout="@layout/content_shtorka" />
-
 	<com.google.android.material.floatingactionbutton.FloatingActionButton
 		android:id="@+id/fab"
 		android:layout_width="wrap_content"

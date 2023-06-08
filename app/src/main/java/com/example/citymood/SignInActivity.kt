@@ -16,16 +16,16 @@ class SignInActivity : AppCompatActivity() {
 		binding = ActivitySignInBinding.inflate(layoutInflater)
 		setContentView(binding.root)
 		firebaseAuth = FirebaseAuth.getInstance()
-		binding.textView.setOnClickListener {
+		binding.textView.setOnClickListener{
 			val intent = Intent(this, SignUpActivity::class.java)
 			startActivity(intent)
 		}
 
-		binding.button.setOnClickListener {
+		binding.button.setOnClickListener{
 			val email = binding.emailEt.text.toString()
 			val pass = binding.passET.text.toString()
 			if (email.isNotEmpty() && pass.isNotEmpty()) {
-				firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
+				firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener{
 					if (it.isSuccessful) {
 						val intent = Intent(this, MainActivity::class.java)
 						startActivity(intent)
