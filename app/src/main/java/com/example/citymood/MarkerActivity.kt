@@ -2,19 +2,31 @@ package com.example.citymood
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.AdapterView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.fragment.app.FragmentActivity
+import androidx.appcompat.app.AppCompatActivity
+import com.example.citymood.databinding.ActivityMarkerBinding
+import com.example.citymood.entity.ColorAdapter
+import com.example.citymood.entity.ColorList
+import com.example.citymood.entity.ColorObj
 import com.google.firebase.firestore.FirebaseFirestore
 
 
-class MarkerActivity : FragmentActivity() {
+class MarkerActivity : AppCompatActivity() {
 	private lateinit var db: FirebaseFirestore
+	private lateinit var binding: ActivityMarkerBinding
+	lateinit var selectedColor: ColorObj
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		setContentView(R.layout.activity_marker)
+		binding = ActivityMarkerBinding.inflate(layoutInflater)
+		setContentView(binding.root)
+		loadColorSpinner()
+		Log.i("loadspinner", selectedColor.hsv.toString())
 
 		db = FirebaseFirestore.getInstance()
 
@@ -28,24 +40,20 @@ class MarkerActivity : FragmentActivity() {
 		longitudeEdt.isLongClickable = false
 		longitudeEdt.setText(longIntent.toString())
 
-		val colEdt = findViewById<EditText>(R.id.editColor)
 		val button1 = findViewById<Button>(R.id.saveButton)
 
 		button1.setOnClickListener{
 			view -> val intent = Intent(view.context, MainActivity::class.java)
 
-			val lat = latitudeEdt.text.toString()
-			val long = longitudeEdt.text.toString()
-			val col = colEdt.text.toString()
+			val lat = latitudeEdt.text.toString().toDouble()
+			val long = longitudeEdt.text.toString().toDouble()
 
 			val marker = HashMap<String, Any>()
 			marker["Latitude"] = lat
 			marker["Longitude"] = long
-			marker["Color"] = col
+			marker["Color"] = selectedColor.hsv
 
-			if (col.isEmpty()) {
-				Toast.makeText(applicationContext, "Please Enter the Data", Toast.LENGTH_SHORT).show()
-			}
+			Log.i("color", selectedColor.hsv.toString())
 			db.collection("markers").add(marker)
 				.addOnSuccessListener {
 					Toast.makeText(this, "db adding success", Toast.LENGTH_LONG).show()
@@ -53,8 +61,22 @@ class MarkerActivity : FragmentActivity() {
 				.addOnFailureListener {
 					Toast.makeText(this, "db adding fail", Toast.LENGTH_LONG).show()
 				}
-			Toast.makeText(this, "settings were saved\n{$lat}\n{$long}\n{$col}", Toast.LENGTH_LONG).show()
+			Toast.makeText(this, "settings were saved\n{$lat}\n{$long}\n{${selectedColor.hsv}}", Toast.LENGTH_LONG).show()
 			view.context.startActivity(intent)
+		}
+	}
+
+		private fun loadColorSpinner() {
+		selectedColor = ColorList().defaultValue
+		binding.editColor.apply{
+			adapter = ColorAdapter(applicationContext, ColorList().basics())
+			setSelection(ColorList().colorPosition(selectedColor), false)
+			onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+				override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+					selectedColor = ColorList().basics()[position]
+				}
+				override fun onNothingSelected(p0: AdapterView<*>?) {}
+			}
 		}
 	}
 }

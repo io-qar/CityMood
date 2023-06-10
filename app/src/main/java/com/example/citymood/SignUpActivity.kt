@@ -33,10 +33,10 @@ class SignUpActivity : AppCompatActivity() {
 						}
 					}
 				} else {
-					Toast.makeText(this, "Password doesn't match with yours", Toast.LENGTH_SHORT).show()
+					Toast.makeText(this, "Неверный пароль", Toast.LENGTH_SHORT).show()
 				}
 			} else {
-				Toast.makeText(this, "Empty fields are not allowed!!", Toast.LENGTH_SHORT).show()
+				Toast.makeText(this, "Все поля должны быть заполнены", Toast.LENGTH_SHORT).show()
 			}
 		}
 	}

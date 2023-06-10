@@ -3,6 +3,7 @@ package com.example.citymood.ui.map
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
@@ -45,6 +47,20 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
 		map.setLatLngBoundsForCameraTarget(bounds)
 		map.animateCamera(CameraUpdateFactory.newLatLngZoom(MOSCOW, 10f))
+
+		db.collection("markers").get()
+			.addOnSuccessListener {markers ->
+				for (marker in markers) {
+					Log.i("db","${marker.get("Latitude")}, ${marker.get("Longitude")} were loaded")
+					map.addMarker(MarkerOptions()
+						.position(LatLng(marker.get("Latitude") as Double, marker.get("Longitude") as Double))
+						.icon(BitmapDescriptorFactory.defaultMarker((marker.get("Color") as Double).toFloat()))
+					)
+				}
+			}
+			.addOnFailureListener {
+				Log.i("db","data were not loaded")
+			}
 
 		map.setOnMapClickListener{
 			latlang -> map.clear()

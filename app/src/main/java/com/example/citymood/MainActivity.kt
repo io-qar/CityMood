@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.citymood.databinding.ActivityShtorkaBinding
@@ -35,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 
 		appBarConfiguration = AppBarConfiguration(
 			setOf(
-				R.id.nav_home, R.id.nav_map, R.id.nav_about, R.id.nav_logout
+				R.id.nav_home, R.id.nav_map, R.id.nav_about, R.id.nav_settings
 			), drawerLayout
 		)
 		setupActionBarWithNavController(navController, appBarConfiguration)
@@ -59,5 +60,10 @@ class MainActivity : AppCompatActivity() {
 		}
 
 		return super.onOptionsItemSelected(item)
+	}
+
+	override fun onSupportNavigateUp(): Boolean {
+		val navController = findNavController(R.id.nav_host_fragment_content_shtorka)
+		return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
 	}
 }
