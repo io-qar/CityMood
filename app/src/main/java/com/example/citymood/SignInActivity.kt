@@ -34,7 +34,7 @@ class SignInActivity : AppCompatActivity() {
 					}
 				}
 			} else {
-				Toast.makeText(this, "Все поля должны быть заполнены", Toast.LENGTH_SHORT).show()
+				Toast.makeText(this, "Все поля должны быть заполнены!", Toast.LENGTH_SHORT).show()
 			}
 		}
 	}

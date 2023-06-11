@@ -35,7 +35,7 @@
 			android:name=".MainActivity"
 			android:exported="true" />
 		<activity
-			android:name=".MarkerActivity"
+			android:name=".ui.map.MarkerActivity"
 			android:exported="true"/>
 	</application>
 </manifest>

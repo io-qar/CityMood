@@ -14,16 +14,16 @@ class ColorList {
 
 	fun basics(): List<ColorObj> {
 		return listOf(
-			ColorObj("Azure", BitmapDescriptorFactory.HUE_AZURE, "f0ffff"),
-			ColorObj("Blue", BitmapDescriptorFactory.HUE_BLUE, "0000ff"),
-			ColorObj("Cyan", BitmapDescriptorFactory.HUE_CYAN, "00ffff"),
-			ColorObj("Green", BitmapDescriptorFactory.HUE_GREEN, "008000"),
-			ColorObj("Magenta", BitmapDescriptorFactory.HUE_MAGENTA, "ff00ff"),
-			ColorObj("Orange", BitmapDescriptorFactory.HUE_ORANGE, "ffa500"),
-			ColorObj("Red", BitmapDescriptorFactory.HUE_RED, "ff0000"),
-			ColorObj("Rose", BitmapDescriptorFactory.HUE_ROSE, "fbcce7"),
-			ColorObj("Violet", BitmapDescriptorFactory.HUE_VIOLET, "ee82ee"),
-			ColorObj("Yellow", BitmapDescriptorFactory.HUE_YELLOW, "ffff00"),
+			ColorObj("Лазурный", BitmapDescriptorFactory.HUE_AZURE, "f0ffff"),
+			ColorObj("Голубой", BitmapDescriptorFactory.HUE_BLUE, "0000ff"),
+			ColorObj("Циановый", BitmapDescriptorFactory.HUE_CYAN, "00ffff"),
+			ColorObj("Зелёный", BitmapDescriptorFactory.HUE_GREEN, "008000"),
+			ColorObj("Пурпурный", BitmapDescriptorFactory.HUE_MAGENTA, "ff00ff"),
+			ColorObj("Оранжевый", BitmapDescriptorFactory.HUE_ORANGE, "ffa500"),
+			ColorObj("Красный", BitmapDescriptorFactory.HUE_RED, "ff0000"),
+			ColorObj("Розовый", BitmapDescriptorFactory.HUE_ROSE, "fbcce7"),
+			ColorObj("Фиолетовый", BitmapDescriptorFactory.HUE_VIOLET, "ee82ee"),
+			ColorObj("Жёлтый", BitmapDescriptorFactory.HUE_YELLOW, "ffff00"),
 		)
 	}
 }

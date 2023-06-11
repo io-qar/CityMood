@@ -1,4 +1,4 @@
-package com.example.citymood
+package com.example.citymood.ui.map
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,10 +9,12 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.citymood.MainActivity
+import com.example.citymood.R
 import com.example.citymood.databinding.ActivityMarkerBinding
-import com.example.citymood.entity.ColorAdapter
 import com.example.citymood.entity.ColorList
 import com.example.citymood.entity.ColorObj
+import com.example.citymood.ui.adapter.ColorAdapter
 import com.google.firebase.firestore.FirebaseFirestore
 
 
@@ -56,12 +58,12 @@ class MarkerActivity : AppCompatActivity() {
 			Log.i("color", selectedColor.hsv.toString())
 			db.collection("markers").add(marker)
 				.addOnSuccessListener {
-					Toast.makeText(this, "db adding success", Toast.LENGTH_LONG).show()
+					Toast.makeText(this, "Маркер успешно сохранён!", Toast.LENGTH_LONG).show()
 				}
 				.addOnFailureListener {
-					Toast.makeText(this, "db adding fail", Toast.LENGTH_LONG).show()
+					Toast.makeText(this, "Маркер не был сохранён...", Toast.LENGTH_LONG).show()
 				}
-			Toast.makeText(this, "settings were saved\n{$lat}\n{$long}\n{${selectedColor.hsv}}", Toast.LENGTH_LONG).show()
+			Toast.makeText(this, "Маркер сохранён:\n{$lat}\n{$long}\n{${selectedColor.hsv}}", Toast.LENGTH_LONG).show()
 			view.context.startActivity(intent)
 		}
 	}
