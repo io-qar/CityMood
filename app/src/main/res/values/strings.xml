@@ -1,19 +1,30 @@
 <resources>
 	<string name="app_name">CityMood</string>
 
-	<string name="nav_header_title">Android Studio</string>
+	<string name="nav_header_title">Пользователь</string>
 	<string name="nav_header_desc">Navigation header</string>
 	<string name="action_logout">Выход из аккаунта</string>
 
-	<string name="menu_home">Домой</string>
+	<string name="menu_home">Домашний экран</string>
 	<string name="menu_map">Карта</string>
 	<string name="menu_about">О приложении</string>
 	<string name="menu_settings">Настройки</string>
+
 	<string name="type_your_email">Почта</string>
-	<string name="type_your_password">Введите пароль</string>
+	<string name="type_your_password">Пароль</string>
 	<string name="sign_in">Вход в аккаунт</string>
 	<string name="not_registered_yet_sign_up">Нет аккаунта? Зарегистрироваться</string>
 	<string name="retype_your_password">Введите пароль ещё раз</string>
 	<string name="sign_up">Зарегистрироваться</string>
-	<string name="you_are_already_registered_sign_in">Вы уже зарегистрированы!</string>
+
+	<string name="pref_key_night" translatable="false">key_night_mode</string>
+	<string name="pref_night_title">Night mode</string>
+	<string name="pref_night_summary">Select a dark or light theme.</string>
+	<string name="pref_night_dialog">Set Night mode</string>
+	<string name="pref_night_auto" translatable="false">auto</string>
+	<string name="pref_night_on" translatable="false">on</string>
+	<string name="pref_night_off" translatable="false">off</string>
+	<string name="night_mode_auto">Как в системе</string>
+	<string name="night_mode_on">Night mode</string>
+	<string name="night_mode_off">Day mode</string>
 </resources>

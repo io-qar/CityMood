@@ -1,6 +1,7 @@
 package com.example.citymood
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
@@ -19,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth
 class MainActivity : AppCompatActivity() {
 	private lateinit var appBarConfiguration: AppBarConfiguration
 	private lateinit var binding: ActivityShtorkaBinding
-	lateinit var auth: FirebaseAuth
+	private lateinit var auth: FirebaseAuth
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -36,7 +37,7 @@ class MainActivity : AppCompatActivity() {
 
 		appBarConfiguration = AppBarConfiguration(
 			setOf(
-				R.id.nav_home, R.id.nav_map, R.id.nav_about, R.id.nav_settings
+				R.id.nav_home, R.id.nav_map, R.id.nav_about
 			), drawerLayout
 		)
 		setupActionBarWithNavController(navController, appBarConfiguration)
@@ -45,20 +46,27 @@ class MainActivity : AppCompatActivity() {
 
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {
 		menuInflater.inflate(R.menu.shtorka, menu)
-
-		val firebaseUser = auth.currentUser?.email
-		val tv = findViewById<TextView>(R.id.navHeaderTextView)
-		tv.text = firebaseUser.toString()
-
 		return true
 	}
 
+	override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+		val firebaseUser = auth.currentUser
+		val tv = findViewById<TextView>(R.id.navHeaderTextView)
+
+		if (firebaseUser != null) {
+			tv.text = firebaseUser.email.toString()
+		}
+		Log.i("textview", tv.text.toString())
+
+		return super.onPrepareOptionsMenu(menu)
+	}
+
 	override fun onOptionsItemSelected(item: MenuItem): Boolean {
-		if (item.itemId == R.id.action_settings) {
+		if (item.itemId == R.id.action_logout) {
 			auth.signOut()
 			finish()
+//			startActivity(Intent(this, SignInActivity::class.java))
 		}
-
 		return super.onOptionsItemSelected(item)
 	}
 

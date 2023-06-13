@@ -1,34 +1,50 @@
 package com.example.citymood.ui.settings
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.example.citymood.databinding.FragmentSettingsBinding
+import android.util.Log
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.BuildCompat
+import androidx.preference.Preference
+import androidx.preference.PreferenceFragmentCompat
+import com.example.citymood.R
+import com.example.citymood.SignInActivity
 
-class SettingsFragment : Fragment() {
-	private var _binding: FragmentSettingsBinding? = null
 
-	private val binding get() = _binding!!
-
-	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-		val settingsViewModel = ViewModelProvider(this)[SettingsViewModel::class.java]
-
-		_binding = FragmentSettingsBinding.inflate(inflater, container, false)
-		val root: View = binding.root
-
-		val textView: TextView = binding.textSettings
-		settingsViewModel.text.observe(viewLifecycleOwner) {
-			textView.text = it
-		}
-		return root
+class SettingsFragment : PreferenceFragmentCompat() {
+	override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+		setPreferencesFromResource(R.xml.root_preferences, rootKey)
+		val preference = findPreference<Preference>(getString(R.string.pref_key_night))
+		preference?.onPreferenceChangeListener = modeChangeListener
 	}
 
-	override fun onDestroyView() {
-		super.onDestroyView()
-		_binding = null
+	private val modeChangeListener =
+		Preference.OnPreferenceChangeListener { _, newValue ->
+			Log.i("newValue", newValue.toString())
+			newValue as? String
+			when (newValue) {
+				getString(R.string.pref_night_on) -> {
+					updateTheme(AppCompatDelegate.MODE_NIGHT_YES)
+				}
+
+				getString(R.string.pref_night_off) -> {
+					updateTheme(AppCompatDelegate.MODE_NIGHT_NO)
+				}
+
+				else -> {
+					if (BuildCompat.isAtLeastQ()) {
+						AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+					} else {
+						AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY)
+					}
+				}
+			}
+			true
+		}
+
+	private fun updateTheme(nightMode: Int): Boolean {
+		AppCompatDelegate.setDefaultNightMode(nightMode)
+		requireActivity().startActivity(Intent(context, SignInActivity::class.java))
+		return true
 	}
 }

@@ -50,7 +50,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 		db.collection("markers").get()
 			.addOnSuccessListener {markers ->
 				for (marker in markers) {
-					Log.i("db","${marker.get("Latitude")}, ${marker.get("Longitude")} were loaded")
 					map.addMarker(MarkerOptions()
 						.position(LatLng(marker.get("Latitude") as Double, marker.get("Longitude") as Double))
 						.icon(BitmapDescriptorFactory.defaultMarker((marker.get("Color") as Double).toFloat()))
@@ -58,13 +57,13 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 				}
 			}
 			.addOnFailureListener {
+				Toast.makeText(context, "Произошла ошибка во время загрузки маркера!", Toast.LENGTH_SHORT).show()
 				Log.i("db","data were not loaded")
 			}
 
-		map.setOnMapClickListener{
-			latlang -> map.clear()
+		map.setOnMapClickListener{latlang ->
+			map.clear()
 			map.addMarker(MarkerOptions().position(latlang))
-			Toast.makeText(context, "{$latlang}", Toast.LENGTH_LONG).show()
 
 			val intent = Intent(context, MarkerActivity::class.java)
 			intent.putExtra("latitude", latlang.latitude)

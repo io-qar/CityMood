@@ -2,9 +2,11 @@
 	<!-- Base application theme. -->
 	<style name="Base.Theme.CityMood" parent="Theme.Material3.DayNight.NoActionBar">
 		<!-- Customize your light theme here. -->
-		<item name="colorPrimary">@color/purple_500</item>
-		<item name="colorPrimaryVariant">@color/purple_700</item>
-		<item name="colorOnPrimary">@color/white</item>
+		<item name="colorPrimary">@color/colorPrimary</item>
+		<item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
+		<item name="colorAccent">@color/colorAccent</item>
+		<item name="windowNoTitle">true</item>
+		<item name="windowActionBar">false</item>
 		<!-- Secondary brand color. -->
 		<item name="colorSecondary">@color/light_green</item>
 		<item name="colorSecondaryVariant">@color/green</item>

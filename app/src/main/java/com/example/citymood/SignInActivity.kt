@@ -2,10 +2,14 @@ package com.example.citymood
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.citymood.databinding.ActivitySignInBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 
 class SignInActivity : AppCompatActivity() {
 	private lateinit var binding: ActivitySignInBinding
@@ -30,7 +34,18 @@ class SignInActivity : AppCompatActivity() {
 						val intent = Intent(this, MainActivity::class.java)
 						startActivity(intent)
 					} else {
-						Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+						try {
+							throw it.exception!!
+						} catch (e: FirebaseAuthWeakPasswordException) {
+							Toast.makeText(this, "Ваш пароль должен быть больше 6 символов!", Toast.LENGTH_SHORT).show()
+						} catch (e: FirebaseAuthInvalidCredentialsException) {
+							Toast.makeText(this, "Почта указана неверно, или введён неверный пароль", Toast.LENGTH_SHORT).show()
+						} catch (e: FirebaseAuthUserCollisionException) {
+							Toast.makeText(this, "Такой пользователь уже существует!", Toast.LENGTH_SHORT).show()
+						} catch (e: Exception) {
+							e.message?.let { it1 -> Log.e("Firebase", it1) }
+							Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+						}
 					}
 				}
 			} else {

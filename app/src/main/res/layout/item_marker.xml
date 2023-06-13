@@ -27,7 +27,7 @@
 				android:layout_height="wrap_content"
 				android:layout_marginBottom="4dp"
 				android:layout_marginStart="8dp"
-				tools:text="Latitiude:"
+				android:text="Широта: "
 				android:textStyle="bold"/>
 
 			<TextView
@@ -51,7 +51,7 @@
 				android:layout_height="wrap_content"
 				android:layout_marginBottom="4dp"
 				android:layout_marginStart="8dp"
-				tools:text="Longitude:"
+				android:text="Долгота:"
 				android:textStyle="bold"/>
 
 			<TextView
@@ -74,7 +74,7 @@
 				android:layout_height="wrap_content"
 				android:layout_marginBottom="4dp"
 				android:layout_marginStart="8dp"
-				tools:text="Color:"
+				android:text="Цвет:"
 				android:textStyle="bold"/>
 
 			<TextView

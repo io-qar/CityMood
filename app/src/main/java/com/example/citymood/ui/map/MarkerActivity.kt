@@ -6,7 +6,7 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Button
-import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.citymood.MainActivity
@@ -28,19 +28,18 @@ class MarkerActivity : AppCompatActivity() {
 		binding = ActivityMarkerBinding.inflate(layoutInflater)
 		setContentView(binding.root)
 		loadColorSpinner()
-		Log.i("loadspinner", selectedColor.hsv.toString())
 
 		db = FirebaseFirestore.getInstance()
 
 		val latIntent = intent.getDoubleExtra("latitude", 55.755833)
 		val longIntent = intent.getDoubleExtra("longitude", 37.617778)
 
-		val latitudeEdt = findViewById<EditText>(R.id.editLat)
+		val latitudeEdt = findViewById<TextView>(R.id.editLat)
 		latitudeEdt.isLongClickable = false
-		latitudeEdt.setText(latIntent.toString())
-		val longitudeEdt = findViewById<EditText>(R.id.editLong)
+		latitudeEdt.text = latIntent.toString()
+		val longitudeEdt = findViewById<TextView>(R.id.editLong)
 		longitudeEdt.isLongClickable = false
-		longitudeEdt.setText(longIntent.toString())
+		longitudeEdt.text = longIntent.toString()
 
 		val button1 = findViewById<Button>(R.id.saveButton)
 

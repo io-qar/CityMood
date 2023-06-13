@@ -1,5 +1,6 @@
 package com.example.citymood.ui.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +20,10 @@ class MarkerAdapter(var markerArrayList: ArrayList<Marker>) : RecyclerView.Adapt
 
 		holder.latView.text = marker.Latitude.toString()
 		holder.longView.text = marker.Longitude.toString()
-		holder.colorView.text = marker.Color.toString()
+		val c = Color.HSVToColor(floatArrayOf(marker.Color, 1f, 1f))
+		val cText = "#" + Integer.toHexString(c).substring(2)
+		holder.colorView.setTextColor(c)
+		holder.colorView.text = cText
 	}
 
 	override fun getItemCount(): Int {
