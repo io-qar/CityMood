@@ -65,7 +65,6 @@ class MainActivity : AppCompatActivity() {
 		if (item.itemId == R.id.action_logout) {
 			auth.signOut()
 			finish()
-//			startActivity(Intent(this, SignInActivity::class.java))
 		}
 		return super.onOptionsItemSelected(item)
 	}
